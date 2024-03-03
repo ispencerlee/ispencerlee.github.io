@@ -5,8 +5,8 @@
     
     <entry>
       <title>campus-network-pppoe</title>
-      <link href="/2024/03/01/campus-network-pppoe/"/>
-      <url>/2024/03/01/campus-network-pppoe/</url>
+      <link href="/campus-network-pppoe-7efda74f9f5e/"/>
+      <url>/campus-network-pppoe-7efda74f9f5e/</url>
       
         <content type="html"><![CDATA[<h1 id="拨号方法"><a href="#拨号方法" class="headerlink" title="拨号方法"></a>拨号方法</h1><ol><li>确认个人校园网的运营商</li></ol><table><thead><tr><th>运营商</th><th>英文缩写</th></tr></thead><tbody><tr><td>电信</td><td>telecom</td></tr><tr><td>联通</td><td>unicom</td></tr><tr><td>移动</td><td>cmcc</td></tr><tr><td>校园网</td><td>haust</td></tr></tbody></table><ol start="2"><li>拨号格式<br>帐号：学号@运营商英文缩写<br>密码：校园网密码</li></ol><h1 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h1><ul><li>可以摆脱校园网只能连接一个设备的限制</li><li>相比连WiFi更加稳定</li></ul><h1 id="发现过程"><a href="#发现过程" class="headerlink" title="发现过程"></a>发现过程</h1><ol><li>打开校园网连接认证界面,地址：10.10.10.11</li><li>打开浏览器开发者工具，定位到<em>选择运营商的窗口</em>, 将看到如下内容，即不同运营商对应的英文缩写<br><img src="/images/Screenshot2024-2-29.png"></li><li>这里的缩写是wtelecom, 因为这是WiFi的连接，w即代表WiFi, 所以在有线拨号的时候需要去掉w</li></ol>]]></content>
       
