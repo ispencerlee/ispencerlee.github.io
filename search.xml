@@ -4,11 +4,36 @@
   
     
     <entry>
+      <title>github ssh connection error</title>
+      <link href="/github-ssh-connection-error-e4a64b56eca4/"/>
+      <url>/github-ssh-connection-error-e4a64b56eca4/</url>
+      
+        <content type="html"><![CDATA[<h2 id="起因：">起因：</h2><p>在使用hexo的<code>hexo deploy</code>时报错，显示<code>Connection closed by 20.205.243.166 port 22</code>,<br>最初以为是hexo配置的问题,后来单独测试了github ssh连接</p><h2 id="尝试使用ssh-clone自己的仓库">尝试使用ssh clone自己的仓库</h2><p>报错情况：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">➜ spencer@spencerarch  ~   git <span class="built_in">clone</span> git@github.com:ispencerlee/ispencerlee.github.io.git</span><br><span class="line"></span><br><span class="line">Cloning into <span class="string">&#x27;ispencerlee.github.io&#x27;</span>...</span><br><span class="line">Connection closed by 20.205.243.166 port 22</span><br><span class="line">fatal: Could not <span class="built_in">read</span> from remote repository.</span><br><span class="line"></span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br></pre></td></tr></table></figure><h2 id="ssh连接github报错">ssh连接github报错</h2><p>测试ssh链接是否正常</p><p>正常情况：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➜ spencer@spencerarch  ~  ssh -T git@github.com</span><br><span class="line">Hi ispencerlee! You<span class="string">&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span></span><br></pre></td></tr></table></figure><p>会显示你的github用户名，说明连接正常</p><p>报错情况：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➜ spencer@spencerarch  ~  ssh -T git@github.com</span><br><span class="line">Connection closed by 20.205.243.166 port 22</span><br></pre></td></tr></table></figure><h2 id="方法：">方法：</h2><p>编辑ssh的config文件</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim .ssh/config</span><br></pre></td></tr></table></figure><p>添加如下内容：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">  HostName ssh.github.com</span><br><span class="line">  Port 443</span><br></pre></td></tr></table></figure><h2 id="原因">原因</h2><p>防火墙有时会拒绝通过ssh的22端口连接, 可以使用https的443端口来连接，这是https的默认开放端口</p><p>参考资料：<br><a href="https://github.com/orgs/community/discussions/54558">https://github.com/orgs/community/discussions/54558</a><br><a href="https://docs.github.com/en/authentication/troubleshooting-ssh/using-ssh-over-the-https-port">https://docs.github.com/en/authentication/troubleshooting-ssh/using-ssh-over-the-https-port</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> networks </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ssh </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>campus-network-pppoe</title>
       <link href="/campus-network-pppoe-7efda74f9f5e/"/>
       <url>/campus-network-pppoe-7efda74f9f5e/</url>
       
-        <content type="html"><![CDATA[<h1 id="拨号方法"><a href="#拨号方法" class="headerlink" title="拨号方法"></a>拨号方法</h1><ol><li>确认个人校园网的运营商</li></ol><table><thead><tr><th>运营商</th><th>英文缩写</th></tr></thead><tbody><tr><td>电信</td><td>telecom</td></tr><tr><td>联通</td><td>unicom</td></tr><tr><td>移动</td><td>cmcc</td></tr><tr><td>校园网</td><td>haust</td></tr></tbody></table><ol start="2"><li>拨号格式<br>帐号：学号@运营商英文缩写<br>密码：校园网密码</li></ol><h1 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h1><ul><li>可以摆脱校园网只能连接一个设备的限制</li><li>相比连WiFi更加稳定</li></ul><h1 id="发现过程"><a href="#发现过程" class="headerlink" title="发现过程"></a>发现过程</h1><ol><li>打开校园网连接认证界面,地址：10.10.10.11</li><li>打开浏览器开发者工具，定位到<em>选择运营商的窗口</em>, 将看到如下内容，即不同运营商对应的英文缩写<br><img src="/images/Screenshot2024-2-29.png"></li><li>这里的缩写是wtelecom, 因为这是WiFi的连接，w即代表WiFi, 所以在有线拨号的时候需要去掉w</li></ol>]]></content>
+        <content type="html"><![CDATA[<h1>拨号方法</h1><ol><li>确认个人校园网的运营商</li></ol><table><thead><tr><th>运营商</th><th>英文缩写</th></tr></thead><tbody><tr><td>电信</td><td>telecom</td></tr><tr><td>联通</td><td>unicom</td></tr><tr><td>移动</td><td>cmcc</td></tr><tr><td>校园网</td><td>haust</td></tr></tbody></table><ol start="2"><li>拨号格式<br>帐号：学号@运营商英文缩写<br>密码：校园网密码</li></ol><h1>优势</h1><ul><li>可以摆脱校园网只能连接一个设备的限制</li><li>相比连WiFi更加稳定</li></ul><h1>发现过程</h1><ol><li>打开校园网连接认证界面,地址：10.10.10.11</li><li>打开浏览器开发者工具，定位到<em>选择运营商的窗口</em>, 将看到如下内容，即不同运营商对应的英文缩写<br><img src="/images/Screenshot2024-2-29.png" alt=""></li><li>这里的缩写是wtelecom, 因为这是WiFi的连接，w即代表WiFi, 所以在有线拨号的时候需要去掉w</li></ol>]]></content>
       
       
       <categories>
