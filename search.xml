@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>ros2 humble installation on archlinux</title>
+      <link href="/ros2-humble-installation-41e5debd3fc1/"/>
+      <url>/ros2-humble-installation-41e5debd3fc1/</url>
+      
+        <content type="html"><![CDATA[<h2 id="安装">安装</h2><p>ros2安装包只支持ubuntu, archlinux则需要自己编译</p><h3 id="方法一">方法一</h3><p>使用aur包编译安装:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yay -S ros2-humble</span><br></pre></td></tr></table></figure><p>但是遇到编译依赖报错<code>command sip-build not found</code><br>折腾了半天没弄好</p><h3 id="方法二">方法二</h3><p>使用<a href="https://arch4edu.org/">arch4edu</a>的源，里面有已经编译好的包</p><ol><li><a href="https://github.com/arch4edu/arch4edu/wiki/Add-arch4edu-to-your-Archlinux">添加源</a></li><li>安装</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pacman -S ros2-humble</span><br></pre></td></tr></table></figure><h2 id="其他问题">其他问题</h2><p>使用节点图的时候报错</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ImportError: No module named pydot</span><br></pre></td></tr></table></figure><p>解决方法：<br>安装python-pydot模块</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo pacman -S python-pydot</span><br></pre></td></tr></table></figure><p>参考资料：<br><a href="https://www.reddit.com/r/ROS/comments/1436gbb/ros2_on_arch/">https://www.reddit.com/r/ROS/comments/1436gbb/ros2_on_arch/</a></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>github ssh connection error</title>
       <link href="/github-ssh-connection-error-e4a64b56eca4/"/>
       <url>/github-ssh-connection-error-e4a64b56eca4/</url>
