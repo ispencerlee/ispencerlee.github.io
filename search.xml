@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>campus network pppoe dial</title>
+    <url>/campus-network-pppoe-7efda74f9f5e/</url>
+    <content><![CDATA[<h1 id="拨号方法"><a href="#拨号方法" class="headerlink" title="拨号方法"></a>拨号方法</h1><ol>
+<li>确认个人校园网的运营商  </li>
+</ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>运营商</th>
+<th>英文缩写</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>电信</td>
+<td>telecom</td>
+</tr>
+<tr>
+<td>联通</td>
+<td>unicom</td>
+</tr>
+<tr>
+<td>移动</td>
+<td>cmcc</td>
+</tr>
+<tr>
+<td>校园网</td>
+<td>haust</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol>
+<li>拨号格式<br>帐号：学号@运营商英文缩写<br>密码：校园网密码  </li>
+</ol>
+<h1 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h1><ul>
+<li>可以摆脱校园网只能连接一个设备的限制</li>
+<li>相比连WiFi更加稳定</li>
+</ul>
+<h1 id="发现过程"><a href="#发现过程" class="headerlink" title="发现过程"></a>发现过程</h1><ol>
+<li>打开校园网连接认证界面,地址：10.10.10.11</li>
+<li>打开浏览器开发者工具，定位到<em>选择运营商的窗口</em>, 将看到如下内容，即不同运营商对应的英文缩写<br><img src="/images/Screenshot2024-2-29.png" alt=""></li>
+<li>这里的缩写是wtelecom, 因为这是WiFi的连接，w即代表WiFi, 所以在有线拨号的时候需要去掉w</li>
+</ol>
+]]></content>
+      <categories>
+        <category>networks</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>github ssh connection error</title>
+    <url>/github-ssh-connection-error-e4a64b56eca4/</url>
+    <content><![CDATA[<h2 id="起因："><a href="#起因：" class="headerlink" title="起因："></a>起因：</h2><p>在使用hexo的<code>hexo deploy</code>时报错，显示<code>Connection closed by 20.205.243.166 port 22</code>,<br>最初以为是hexo配置的问题,后来单独测试了github ssh连接 </p>
+<h2 id="尝试使用ssh-clone自己的仓库"><a href="#尝试使用ssh-clone自己的仓库" class="headerlink" title="尝试使用ssh clone自己的仓库"></a>尝试使用ssh clone自己的仓库</h2><p>报错情况：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ spencer@spencerarch  ~   git <span class="built_in">clone</span> git@github.com:ispencerlee/ispencerlee.github.io.git</span><br><span class="line"></span><br><span class="line">Cloning into <span class="string">&#x27;ispencerlee.github.io&#x27;</span>...</span><br><span class="line">Connection closed by 20.205.243.166 port 22</span><br><span class="line">fatal: Could not <span class="built_in">read</span> from remote repository.</span><br><span class="line"></span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br></pre></td></tr></table></figure></p>
+<h2 id="ssh连接github报错"><a href="#ssh连接github报错" class="headerlink" title="ssh连接github报错"></a>ssh连接github报错</h2><p>测试ssh链接是否正常</p>
+<p>正常情况：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ spencer@spencerarch  ~  ssh -T git@github.com</span><br><span class="line">Hi ispencerlee! You<span class="string">&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span></span><br></pre></td></tr></table></figure><br>会显示你的github用户名，说明连接正常</p>
+<p>报错情况：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ spencer@spencerarch  ~  ssh -T git@github.com</span><br><span class="line">Connection closed by 20.205.243.166 port 22</span><br></pre></td></tr></table></figure></p>
+<h2 id="方法："><a href="#方法：" class="headerlink" title="方法："></a>方法：</h2><p>编辑ssh的config文件<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ vim .ssh/config</span><br></pre></td></tr></table></figure><br>添加如下内容：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">  HostName ssh.github.com</span><br><span class="line">  Port 443</span><br></pre></td></tr></table></figure></p>
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>防火墙有时会拒绝通过ssh的22端口连接, 可以使用https的443端口来连接，这是https的默认开放端口  </p>
+<p>参考资料：<br><a href="https://github.com/orgs/community/discussions/54558">https://github.com/orgs/community/discussions/54558</a><br><a href="https://docs.github.com/en/authentication/troubleshooting-ssh/using-ssh-over-the-https-port">https://docs.github.com/en/authentication/troubleshooting-ssh/using-ssh-over-the-https-port</a></p>
+]]></content>
+      <categories>
+        <category>networks</category>
+      </categories>
+      <tags>
+        <tag>ssh</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>markdown lint vale configuration</title>
+    <url>/markdown-lint-with-vale-10a85a7df670/</url>
+    <content><![CDATA[<h1 id="markdown-lint-vale-configuration"><a href="#markdown-lint-vale-configuration" class="headerlink" title="markdown lint vale configuration"></a>markdown lint vale configuration</h1><ol>
+<li>using mason install vale</li>
+<li>sync the vale package for the first usage</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">mkdir</span> ~/.config/vale/.vale.ini</span><br><span class="line">$ vim .vale.ini</span><br><span class="line"></span><br><span class="line"><span class="comment"># add those</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># sync Styles to the global config</span></span><br><span class="line">StylesPath = .</span><br><span class="line">MinAlertLevel = suggestion</span><br><span class="line">Packages = RedHat, alex</span><br><span class="line">[*]</span><br><span class="line">BasedOnStyles = Vale, RedHat, alex</span><br></pre></td></tr></table></figure>
+<ol>
+<li>sync the mason package with global config</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">~/.local/share/nvim/mason/packages/vale/vale --config=<span class="variable">$HOME</span>/.config/vale/.vale.ini <span class="built_in">sync</span></span><br></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://vale.sh/generator">vale</a><br><a href="https://github.com/mfussenegger/nvim-lint/issues/528">nvim-lint issue</a></p>
+]]></content>
+      <tags>
+        <tag>neovim</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>notes taking with vimtex</title>
+    <url>/notes-taking-with-vimtex-a58614f30037/</url>
+    <content><![CDATA[<h2 id="Install-texlive"><a href="#Install-texlive" class="headerlink" title="Install texlive"></a>Install texlive</h2><p>Download it at <a href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images">tsinghua</a>, choose the <strong>texlive.iso*</strong></p>
+<p>Install perl-tk, for texlive installation</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo apt install perl-tk</span><br></pre></td></tr></table></figure>
+<p>Load the texlive ISO file (do not care the warning)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo mount -o loop yourtexlive.iso /mnt</span><br><span class="line">$ <span class="built_in">cd</span> /mnt</span><br><span class="line"><span class="comment"># launch the GUI, just click install it</span></span><br><span class="line">$ sudo ./install-tl -gui</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>Adding another packages</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># adding chinese support</span></span><br><span class="line">$ sudo apt install texlive-lang-chinese</span><br><span class="line"></span><br><span class="line"><span class="comment"># adding some package and fonts support</span></span><br><span class="line">$ sudo apt install texlive-latex-base texlive-latex-extra texlive-latex-recommended texlive-fonts-recommended</span><br></pre></td></tr></table></figure>
+<p>Installing XeLatex</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo apt install texlive-xetex</span><br></pre></td></tr></table></figure>
+<p>Using chinse in Latex</p>
+<ul>
+<li>CTeX</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>[UTF8]&#123;ctexart&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>[T1]&#123;fontenc&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">你好，这是一个测试文档。</span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<p>when using ctexart documention, recommand add it<code>\usepackage[T1]&#123;fontenc&#125;</code>, in case symbol can’t be displayed correct</p>
+<ul>
+<li>ctex</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>&#123;article&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>[UTF8]&#123;ctex&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">你好，这是一个测试文档。</span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://github.com/lervag/vimtex">vimtex</a><br><a href="https://jdhao.github.io/2018/03/29/latex-chinese.zh/">全面总结如何在 LaTeX 中使用中文 (2020 最新版)</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>ros2 humble installation on archlinux</title>
+    <url>/ros2-humble-installation-41e5debd3fc1/</url>
+    <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>ros2安装包只支持ubuntu, archlinux则需要自己编译</p>
+<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>使用aur包编译安装:<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ yay -S ros2-humble</span><br></pre></td></tr></table></figure><br>但是遇到编译依赖报错<code>command sip-build not found</code><br>折腾了半天没弄好</p>
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>使用<a href="https://arch4edu.org/">arch4edu</a>的源，里面有已经编译好的包</p>
+<ol>
+<li><a href="https://github.com/arch4edu/arch4edu/wiki/Add-arch4edu-to-your-Archlinux">添加源</a></li>
+<li>安装<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo pacman -S ros2-humble</span><br></pre></td></tr></table></figure>
+<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2>使用节点图的时候报错<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ImportError: No module named pydot</span><br></pre></td></tr></table></figure>
+解决方法：<br>安装python-pydot模块<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo pacman -S python-pydot</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>参考资料：<br><a href="https://www.reddit.com/r/ROS/comments/1436gbb/ros2_on_arch/">https://www.reddit.com/r/ROS/comments/1436gbb/ros2_on_arch/</a></p>
+]]></content>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+</search>
