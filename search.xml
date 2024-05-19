@@ -71,82 +71,6 @@
       </tags>
   </entry>
   <entry>
-    <title>markdown lint vale configuration</title>
-    <url>/markdown-lint-with-vale-10a85a7df670/</url>
-    <content><![CDATA[<h1 id="markdown-lint-vale-configuration"><a href="#markdown-lint-vale-configuration" class="headerlink" title="markdown lint vale configuration"></a>markdown lint vale configuration</h1><ol>
-<li>using mason install vale</li>
-<li>sync the vale package for the first usage</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">mkdir</span> ~/.config/vale/.vale.ini</span><br><span class="line">$ vim .vale.ini</span><br><span class="line"></span><br><span class="line"><span class="comment"># add those</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># sync Styles to the global config</span></span><br><span class="line">StylesPath = .</span><br><span class="line">MinAlertLevel = suggestion</span><br><span class="line">Packages = RedHat, alex</span><br><span class="line">[*]</span><br><span class="line">BasedOnStyles = Vale, RedHat, alex</span><br></pre></td></tr></table></figure>
-<ol>
-<li>sync the mason package with global config</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">~/.local/share/nvim/mason/packages/vale/vale --config=<span class="variable">$HOME</span>/.config/vale/.vale.ini <span class="built_in">sync</span></span><br></pre></td></tr></table></figure>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://vale.sh/generator">vale</a><br><a href="https://github.com/mfussenegger/nvim-lint/issues/528">nvim-lint issue</a></p>
-]]></content>
-      <tags>
-        <tag>neovim</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>notes taking with vimtex</title>
-    <url>/notes-taking-with-vimtex-a58614f30037/</url>
-    <content><![CDATA[<h2 id="Install-texlive"><a href="#Install-texlive" class="headerlink" title="Install texlive"></a>Install texlive</h2><p>Download it at <a href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images">tsinghua</a>, choose the <strong>texlive.iso*</strong></p>
-<p>Install perl-tk, for texlive installation</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo apt install perl-tk</span><br></pre></td></tr></table></figure>
-<p>Load the texlive ISO file (do not care the warning)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo mount -o loop yourtexlive.iso /mnt</span><br><span class="line">$ <span class="built_in">cd</span> /mnt</span><br><span class="line"><span class="comment"># launch the GUI, just click install it</span></span><br><span class="line">$ sudo ./install-tl -gui</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>Adding another packages</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># adding chinese support</span></span><br><span class="line">$ sudo apt install texlive-lang-chinese</span><br><span class="line"></span><br><span class="line"><span class="comment"># adding some package and fonts support</span></span><br><span class="line">$ sudo apt install texlive-latex-base texlive-latex-extra texlive-latex-recommended texlive-fonts-recommended</span><br></pre></td></tr></table></figure>
-<p>Installing XeLatex</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo apt install texlive-xetex</span><br></pre></td></tr></table></figure>
-<p>Using chinse in Latex</p>
-<ul>
-<li>CTeX</li>
-</ul>
-<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>[UTF8]&#123;ctexart&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>[T1]&#123;fontenc&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">你好，这是一个测试文档。</span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
-<p>when using ctexart documention, recommand add it<code>\usepackage[T1]&#123;fontenc&#125;</code>, in case symbol can’t be displayed correct</p>
-<ul>
-<li>ctex</li>
-</ul>
-<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>&#123;article&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>[UTF8]&#123;ctex&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">你好，这是一个测试文档。</span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://github.com/lervag/vimtex">vimtex</a><br><a href="https://jdhao.github.io/2018/03/29/latex-chinese.zh/">全面总结如何在 LaTeX 中使用中文 (2020 最新版)</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>ros2 humble installation on archlinux</title>
-    <url>/ros2-humble-installation-41e5debd3fc1/</url>
-    <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>ros2安装包只支持ubuntu, archlinux则需要自己编译</p>
-<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>使用aur包编译安装:<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ yay -S ros2-humble</span><br></pre></td></tr></table></figure><br>但是遇到编译依赖报错<code>command sip-build not found</code><br>折腾了半天没弄好</p>
-<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>使用<a href="https://arch4edu.org/">arch4edu</a>的源，里面有已经编译好的包</p>
-<ol>
-<li><a href="https://github.com/arch4edu/arch4edu/wiki/Add-arch4edu-to-your-Archlinux">添加源</a></li>
-<li>安装<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo pacman -S ros2-humble</span><br></pre></td></tr></table></figure>
-<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2>使用节点图的时候报错<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ImportError: No module named pydot</span><br></pre></td></tr></table></figure>
-解决方法：<br>安装python-pydot模块<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo pacman -S python-pydot</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>参考资料：<br><a href="https://www.reddit.com/r/ROS/comments/1436gbb/ros2_on_arch/">https://www.reddit.com/r/ROS/comments/1436gbb/ros2_on_arch/</a></p>
-]]></content>
-      <tags>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo-migration</title>
-    <url>/hexo-migration-037416e97f84/</url>
-    <content><![CDATA[<h2 id="Causation"><a href="#Causation" class="headerlink" title="Causation"></a>Causation</h2><p>Due to I change my Linux distrobution from archlinux to ubuntu,<br>so I need to make an migration for hexo blog</p>
-<h2 id="Migration"><a href="#Migration" class="headerlink" title="Migration"></a>Migration</h2><p>Copy the blog’s source file, config files</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cp</span> ~/blog/source ~/blog-backup</span><br><span class="line">$ <span class="built_in">cp</span> ~/blog/_config.* ~/blog-backup</span><br></pre></td></tr></table></figure>
-<p>Create a new blog directory</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">mkdir</span> blog</span><br></pre></td></tr></table></figure>
-<h2 id="Setup-hexo"><a href="#Setup-hexo" class="headerlink" title="Setup hexo"></a>Setup hexo</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> blog</span><br><span class="line"></span><br><span class="line"><span class="comment"># install hexo-cli</span></span><br><span class="line">$ npm install -g hexo-cli</span><br><span class="line"></span><br><span class="line"><span class="comment">#check installation</span></span><br><span class="line"><span class="comment"># hexo -v</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># init hexo</span></span><br><span class="line">$ hexo init</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
-<h2 id="Setup-butterfly"><a href="#Setup-butterfly" class="headerlink" title="Setup butterfly"></a>Setup butterfly</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># install theme</span></span><br><span class="line">$ npm install hexo-theme-butterfly</span><br><span class="line"></span><br><span class="line"><span class="comment"># clone theme to the blog/theme</span></span><br><span class="line">git <span class="built_in">clone</span> -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly</span><br><span class="line"></span><br><span class="line"><span class="comment"># install plugins</span></span><br><span class="line">npm install hexo-renderer-pug hexo-renderer-stylus --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># math formula</span></span><br><span class="line">$ npm uninstall hexo-renderer-marked --save</span><br><span class="line">$ npm install hexo-renderer-kramed --save</span><br><span class="line"></span><br><span class="line">$ npm install hexo-renderer-pug hexo-renderer-stylus --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># wordcount</span></span><br><span class="line">$ npm install hexo-wordcount --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># github deploy plugin</span></span><br><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<h2 id="Check"><a href="#Check" class="headerlink" title="Check"></a>Check</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo g</span><br><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://butterfly.js.org">butterfly-theme-document</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>dae_setup</title>
     <url>/dae-setup-56dad34f12d6/</url>
     <content><![CDATA[<h2 id="dae手动编译安装与配置"><a href="#dae手动编译安装与配置" class="headerlink" title="dae手动编译安装与配置"></a>dae手动编译安装与配置</h2><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="编译依赖要求"><a href="#编译依赖要求" class="headerlink" title="编译依赖要求"></a>编译依赖要求</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># clang &gt;= 10</span></span><br><span class="line">llvm &gt;= 10 (optional)</span><br><span class="line">golang &gt;= 1.18</span><br><span class="line">make</span><br><span class="line"><span class="comment"># 安装(如果是及以上ubunut22.04,对应版本都满足)</span></span><br><span class="line">$ sudo apt install clang llvm golang make -y</span><br></pre></td></tr></table></figure>
@@ -177,5 +101,81 @@
 </ul>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 暂停运行</span></span><br><span class="line">$ dae <span class="built_in">suspend</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新加载配置</span></span><br><span class="line">$ dae reload</span><br></pre></td></tr></table></figure>
 ]]></content>
+  </entry>
+  <entry>
+    <title>hexo-migration</title>
+    <url>/hexo-migration-037416e97f84/</url>
+    <content><![CDATA[<h2 id="Causation"><a href="#Causation" class="headerlink" title="Causation"></a>Causation</h2><p>Due to I change my Linux distrobution from archlinux to ubuntu,<br>so I need to make an migration for hexo blog</p>
+<h2 id="Migration"><a href="#Migration" class="headerlink" title="Migration"></a>Migration</h2><p>Copy the blog’s source file, config files</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cp</span> ~/blog/source ~/blog-backup</span><br><span class="line">$ <span class="built_in">cp</span> ~/blog/_config.* ~/blog-backup</span><br></pre></td></tr></table></figure>
+<p>Create a new blog directory</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">mkdir</span> blog</span><br></pre></td></tr></table></figure>
+<h2 id="Setup-hexo"><a href="#Setup-hexo" class="headerlink" title="Setup hexo"></a>Setup hexo</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> blog</span><br><span class="line"></span><br><span class="line"><span class="comment"># install hexo-cli</span></span><br><span class="line">$ npm install -g hexo-cli</span><br><span class="line"></span><br><span class="line"><span class="comment">#check installation</span></span><br><span class="line"><span class="comment"># hexo -v</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># init hexo</span></span><br><span class="line">$ hexo init</span><br><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+<h2 id="Setup-butterfly"><a href="#Setup-butterfly" class="headerlink" title="Setup butterfly"></a>Setup butterfly</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># install theme</span></span><br><span class="line">$ npm install hexo-theme-butterfly</span><br><span class="line"></span><br><span class="line"><span class="comment"># clone theme to the blog/theme</span></span><br><span class="line">git <span class="built_in">clone</span> -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly</span><br><span class="line"></span><br><span class="line"><span class="comment"># install plugins</span></span><br><span class="line">npm install hexo-renderer-pug hexo-renderer-stylus --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># math formula</span></span><br><span class="line">$ npm uninstall hexo-renderer-marked --save</span><br><span class="line">$ npm install hexo-renderer-kramed --save</span><br><span class="line"></span><br><span class="line">$ npm install hexo-renderer-pug hexo-renderer-stylus --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># wordcount</span></span><br><span class="line">$ npm install hexo-wordcount --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># github deploy plugin</span></span><br><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<h2 id="Check"><a href="#Check" class="headerlink" title="Check"></a>Check</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo g</span><br><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://butterfly.js.org">butterfly-theme-document</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>notes taking with vimtex</title>
+    <url>/notes-taking-with-vimtex-a58614f30037/</url>
+    <content><![CDATA[<h2 id="Install-texlive"><a href="#Install-texlive" class="headerlink" title="Install texlive"></a>Install texlive</h2><p>Download it at <a href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images">tsinghua</a>, choose the <strong>texlive.iso*</strong></p>
+<p>Install perl-tk, for texlive installation</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo apt install perl-tk</span><br></pre></td></tr></table></figure>
+<p>Load the texlive ISO file (do not care the warning)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo mount -o loop yourtexlive.iso /mnt</span><br><span class="line">$ <span class="built_in">cd</span> /mnt</span><br><span class="line"><span class="comment"># launch the GUI, just click install it</span></span><br><span class="line">$ sudo ./install-tl -gui</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>Adding another packages</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># adding chinese support</span></span><br><span class="line">$ sudo apt install texlive-lang-chinese</span><br><span class="line"></span><br><span class="line"><span class="comment"># adding some package and fonts support</span></span><br><span class="line">$ sudo apt install texlive-latex-base texlive-latex-extra texlive-latex-recommended texlive-fonts-recommended</span><br></pre></td></tr></table></figure>
+<p>Installing XeLatex</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo apt install texlive-xetex</span><br></pre></td></tr></table></figure>
+<p>Using chinse in Latex</p>
+<ul>
+<li>CTeX</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>[UTF8]&#123;ctexart&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>[T1]&#123;fontenc&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">你好，这是一个测试文档。</span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<p>when using ctexart documention, recommand add it<code>\usepackage[T1]&#123;fontenc&#125;</code>, in case symbol can’t be displayed correct</p>
+<ul>
+<li>ctex</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>&#123;article&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>[UTF8]&#123;ctex&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">你好，这是一个测试文档。</span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://github.com/lervag/vimtex">vimtex</a><br><a href="https://jdhao.github.io/2018/03/29/latex-chinese.zh/">全面总结如何在 LaTeX 中使用中文 (2020 最新版)</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>markdown lint vale configuration</title>
+    <url>/markdown-lint-with-vale-10a85a7df670/</url>
+    <content><![CDATA[<h1 id="markdown-lint-vale-configuration"><a href="#markdown-lint-vale-configuration" class="headerlink" title="markdown lint vale configuration"></a>markdown lint vale configuration</h1><ol>
+<li>using mason install vale</li>
+<li>sync the vale package for the first usage</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">mkdir</span> ~/.config/vale/.vale.ini</span><br><span class="line">$ vim .vale.ini</span><br><span class="line"></span><br><span class="line"><span class="comment"># add those</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># sync Styles to the global config</span></span><br><span class="line">StylesPath = .</span><br><span class="line">MinAlertLevel = suggestion</span><br><span class="line">Packages = RedHat, alex</span><br><span class="line">[*]</span><br><span class="line">BasedOnStyles = Vale, RedHat, alex</span><br></pre></td></tr></table></figure>
+<ol>
+<li>sync the mason package with global config</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">~/.local/share/nvim/mason/packages/vale/vale --config=<span class="variable">$HOME</span>/.config/vale/.vale.ini <span class="built_in">sync</span></span><br></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://vale.sh/generator">vale</a><br><a href="https://github.com/mfussenegger/nvim-lint/issues/528">nvim-lint issue</a></p>
+]]></content>
+      <tags>
+        <tag>neovim</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ros2 humble installation on archlinux</title>
+    <url>/ros2-humble-installation-41e5debd3fc1/</url>
+    <content><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>ros2安装包只支持ubuntu, archlinux则需要自己编译</p>
+<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>使用aur包编译安装:<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ yay -S ros2-humble</span><br></pre></td></tr></table></figure><br>但是遇到编译依赖报错<code>command sip-build not found</code><br>折腾了半天没弄好</p>
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>使用<a href="https://arch4edu.org/">arch4edu</a>的源，里面有已经编译好的包</p>
+<ol>
+<li><a href="https://github.com/arch4edu/arch4edu/wiki/Add-arch4edu-to-your-Archlinux">添加源</a></li>
+<li>安装<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo pacman -S ros2-humble</span><br></pre></td></tr></table></figure>
+<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2>使用节点图的时候报错<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ImportError: No module named pydot</span><br></pre></td></tr></table></figure>
+解决方法：<br>安装python-pydot模块<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo pacman -S python-pydot</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>参考资料：<br><a href="https://www.reddit.com/r/ROS/comments/1436gbb/ros2_on_arch/">https://www.reddit.com/r/ROS/comments/1436gbb/ros2_on_arch/</a></p>
+]]></content>
+      <tags>
+        <tag>linux</tag>
+      </tags>
   </entry>
 </search>
