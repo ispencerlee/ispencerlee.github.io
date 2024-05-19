@@ -52,25 +52,6 @@
       </categories>
   </entry>
   <entry>
-    <title>github ssh connection error</title>
-    <url>/github-ssh-connection-error-e4a64b56eca4/</url>
-    <content><![CDATA[<h2 id="起因："><a href="#起因：" class="headerlink" title="起因："></a>起因：</h2><p>在使用hexo的<code>hexo deploy</code>时报错，显示<code>Connection closed by 20.205.243.166 port 22</code>,<br>最初以为是hexo配置的问题,后来单独测试了github ssh连接 </p>
-<h2 id="尝试使用ssh-clone自己的仓库"><a href="#尝试使用ssh-clone自己的仓库" class="headerlink" title="尝试使用ssh clone自己的仓库"></a>尝试使用ssh clone自己的仓库</h2><p>报错情况：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ spencer@spencerarch  ~   git <span class="built_in">clone</span> git@github.com:ispencerlee/ispencerlee.github.io.git</span><br><span class="line"></span><br><span class="line">Cloning into <span class="string">&#x27;ispencerlee.github.io&#x27;</span>...</span><br><span class="line">Connection closed by 20.205.243.166 port 22</span><br><span class="line">fatal: Could not <span class="built_in">read</span> from remote repository.</span><br><span class="line"></span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br></pre></td></tr></table></figure></p>
-<h2 id="ssh连接github报错"><a href="#ssh连接github报错" class="headerlink" title="ssh连接github报错"></a>ssh连接github报错</h2><p>测试ssh链接是否正常</p>
-<p>正常情况：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ spencer@spencerarch  ~  ssh -T git@github.com</span><br><span class="line">Hi ispencerlee! You<span class="string">&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span></span><br></pre></td></tr></table></figure><br>会显示你的github用户名，说明连接正常</p>
-<p>报错情况：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ spencer@spencerarch  ~  ssh -T git@github.com</span><br><span class="line">Connection closed by 20.205.243.166 port 22</span><br></pre></td></tr></table></figure></p>
-<h2 id="方法："><a href="#方法：" class="headerlink" title="方法："></a>方法：</h2><p>编辑ssh的config文件<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ vim .ssh/config</span><br></pre></td></tr></table></figure><br>添加如下内容：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">  HostName ssh.github.com</span><br><span class="line">  Port 443</span><br></pre></td></tr></table></figure></p>
-<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>防火墙有时会拒绝通过ssh的22端口连接, 可以使用https的443端口来连接，这是https的默认开放端口  </p>
-<p>参考资料：<br><a href="https://github.com/orgs/community/discussions/54558">https://github.com/orgs/community/discussions/54558</a><br><a href="https://docs.github.com/en/authentication/troubleshooting-ssh/using-ssh-over-the-https-port">https://docs.github.com/en/authentication/troubleshooting-ssh/using-ssh-over-the-https-port</a></p>
-]]></content>
-      <categories>
-        <category>networks</category>
-      </categories>
-      <tags>
-        <tag>ssh</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>dae_setup</title>
     <url>/dae-setup-56dad34f12d6/</url>
     <content><![CDATA[<h2 id="dae手动编译安装与配置"><a href="#dae手动编译安装与配置" class="headerlink" title="dae手动编译安装与配置"></a>dae手动编译安装与配置</h2><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="编译依赖要求"><a href="#编译依赖要求" class="headerlink" title="编译依赖要求"></a>编译依赖要求</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># clang &gt;= 10</span></span><br><span class="line">llvm &gt;= 10 (optional)</span><br><span class="line">golang &gt;= 1.18</span><br><span class="line">make</span><br><span class="line"><span class="comment"># 安装(如果是及以上ubunut22.04,对应版本都满足)</span></span><br><span class="line">$ sudo apt install clang llvm golang make -y</span><br></pre></td></tr></table></figure>
@@ -100,7 +81,32 @@
 <li>常用指令</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 暂停运行</span></span><br><span class="line">$ dae <span class="built_in">suspend</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新加载配置</span></span><br><span class="line">$ dae reload</span><br></pre></td></tr></table></figure>
+<h3 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h3><ul>
+<li>dae manual<br><a href="https://github.com/daeuniverse/dae/blob/main/docs/en/user-guide/build-by-yourself.md">build-by-yourself</a><br><a href="https://github.com/daeuniverse/dae/blob/main/docs/en/user-guide/run-as-daemon.md">Run dae as a Daemon Service</a></li>
+</ul>
 ]]></content>
+      <tags>
+        <tag>computer-networks</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>github ssh connection error</title>
+    <url>/github-ssh-connection-error-e4a64b56eca4/</url>
+    <content><![CDATA[<h2 id="起因："><a href="#起因：" class="headerlink" title="起因："></a>起因：</h2><p>在使用hexo的<code>hexo deploy</code>时报错，显示<code>Connection closed by 20.205.243.166 port 22</code>,<br>最初以为是hexo配置的问题,后来单独测试了github ssh连接 </p>
+<h2 id="尝试使用ssh-clone自己的仓库"><a href="#尝试使用ssh-clone自己的仓库" class="headerlink" title="尝试使用ssh clone自己的仓库"></a>尝试使用ssh clone自己的仓库</h2><p>报错情况：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ spencer@spencerarch  ~   git <span class="built_in">clone</span> git@github.com:ispencerlee/ispencerlee.github.io.git</span><br><span class="line"></span><br><span class="line">Cloning into <span class="string">&#x27;ispencerlee.github.io&#x27;</span>...</span><br><span class="line">Connection closed by 20.205.243.166 port 22</span><br><span class="line">fatal: Could not <span class="built_in">read</span> from remote repository.</span><br><span class="line"></span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br></pre></td></tr></table></figure></p>
+<h2 id="ssh连接github报错"><a href="#ssh连接github报错" class="headerlink" title="ssh连接github报错"></a>ssh连接github报错</h2><p>测试ssh链接是否正常</p>
+<p>正常情况：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ spencer@spencerarch  ~  ssh -T git@github.com</span><br><span class="line">Hi ispencerlee! You<span class="string">&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span></span><br></pre></td></tr></table></figure><br>会显示你的github用户名，说明连接正常</p>
+<p>报错情况：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ spencer@spencerarch  ~  ssh -T git@github.com</span><br><span class="line">Connection closed by 20.205.243.166 port 22</span><br></pre></td></tr></table></figure></p>
+<h2 id="方法："><a href="#方法：" class="headerlink" title="方法："></a>方法：</h2><p>编辑ssh的config文件<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ vim .ssh/config</span><br></pre></td></tr></table></figure><br>添加如下内容：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">  HostName ssh.github.com</span><br><span class="line">  Port 443</span><br></pre></td></tr></table></figure></p>
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>防火墙有时会拒绝通过ssh的22端口连接, 可以使用https的443端口来连接，这是https的默认开放端口  </p>
+<p>参考资料：<br><a href="https://github.com/orgs/community/discussions/54558">https://github.com/orgs/community/discussions/54558</a><br><a href="https://docs.github.com/en/authentication/troubleshooting-ssh/using-ssh-over-the-https-port">https://docs.github.com/en/authentication/troubleshooting-ssh/using-ssh-over-the-https-port</a></p>
+]]></content>
+      <categories>
+        <category>networks</category>
+      </categories>
+      <tags>
+        <tag>ssh</tag>
+      </tags>
   </entry>
   <entry>
     <title>hexo-migration</title>
@@ -114,31 +120,6 @@
 <h2 id="Setup-butterfly"><a href="#Setup-butterfly" class="headerlink" title="Setup butterfly"></a>Setup butterfly</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># install theme</span></span><br><span class="line">$ npm install hexo-theme-butterfly</span><br><span class="line"></span><br><span class="line"><span class="comment"># clone theme to the blog/theme</span></span><br><span class="line">git <span class="built_in">clone</span> -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly</span><br><span class="line"></span><br><span class="line"><span class="comment"># install plugins</span></span><br><span class="line">npm install hexo-renderer-pug hexo-renderer-stylus --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># math formula</span></span><br><span class="line">$ npm uninstall hexo-renderer-marked --save</span><br><span class="line">$ npm install hexo-renderer-kramed --save</span><br><span class="line"></span><br><span class="line">$ npm install hexo-renderer-pug hexo-renderer-stylus --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># wordcount</span></span><br><span class="line">$ npm install hexo-wordcount --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># github deploy plugin</span></span><br><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
 <h2 id="Check"><a href="#Check" class="headerlink" title="Check"></a>Check</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo g</span><br><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://butterfly.js.org">butterfly-theme-document</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>notes taking with vimtex</title>
-    <url>/notes-taking-with-vimtex-a58614f30037/</url>
-    <content><![CDATA[<h2 id="Install-texlive"><a href="#Install-texlive" class="headerlink" title="Install texlive"></a>Install texlive</h2><p>Download it at <a href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images">tsinghua</a>, choose the <strong>texlive.iso*</strong></p>
-<p>Install perl-tk, for texlive installation</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo apt install perl-tk</span><br></pre></td></tr></table></figure>
-<p>Load the texlive ISO file (do not care the warning)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo mount -o loop yourtexlive.iso /mnt</span><br><span class="line">$ <span class="built_in">cd</span> /mnt</span><br><span class="line"><span class="comment"># launch the GUI, just click install it</span></span><br><span class="line">$ sudo ./install-tl -gui</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>Adding another packages</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># adding chinese support</span></span><br><span class="line">$ sudo apt install texlive-lang-chinese</span><br><span class="line"></span><br><span class="line"><span class="comment"># adding some package and fonts support</span></span><br><span class="line">$ sudo apt install texlive-latex-base texlive-latex-extra texlive-latex-recommended texlive-fonts-recommended</span><br></pre></td></tr></table></figure>
-<p>Installing XeLatex</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo apt install texlive-xetex</span><br></pre></td></tr></table></figure>
-<p>Using chinse in Latex</p>
-<ul>
-<li>CTeX</li>
-</ul>
-<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>[UTF8]&#123;ctexart&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>[T1]&#123;fontenc&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">你好，这是一个测试文档。</span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
-<p>when using ctexart documention, recommand add it<code>\usepackage[T1]&#123;fontenc&#125;</code>, in case symbol can’t be displayed correct</p>
-<ul>
-<li>ctex</li>
-</ul>
-<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>&#123;article&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>[UTF8]&#123;ctex&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">你好，这是一个测试文档。</span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://github.com/lervag/vimtex">vimtex</a><br><a href="https://jdhao.github.io/2018/03/29/latex-chinese.zh/">全面总结如何在 LaTeX 中使用中文 (2020 最新版)</a></p>
 ]]></content>
   </entry>
   <entry>
@@ -177,5 +158,30 @@
       <tags>
         <tag>linux</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>notes taking with vimtex</title>
+    <url>/notes-taking-with-vimtex-a58614f30037/</url>
+    <content><![CDATA[<h2 id="Install-texlive"><a href="#Install-texlive" class="headerlink" title="Install texlive"></a>Install texlive</h2><p>Download it at <a href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images">tsinghua</a>, choose the <strong>texlive.iso*</strong></p>
+<p>Install perl-tk, for texlive installation</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo apt install perl-tk</span><br></pre></td></tr></table></figure>
+<p>Load the texlive ISO file (do not care the warning)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo mount -o loop yourtexlive.iso /mnt</span><br><span class="line">$ <span class="built_in">cd</span> /mnt</span><br><span class="line"><span class="comment"># launch the GUI, just click install it</span></span><br><span class="line">$ sudo ./install-tl -gui</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>Adding another packages</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># adding chinese support</span></span><br><span class="line">$ sudo apt install texlive-lang-chinese</span><br><span class="line"></span><br><span class="line"><span class="comment"># adding some package and fonts support</span></span><br><span class="line">$ sudo apt install texlive-latex-base texlive-latex-extra texlive-latex-recommended texlive-fonts-recommended</span><br></pre></td></tr></table></figure>
+<p>Installing XeLatex</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo apt install texlive-xetex</span><br></pre></td></tr></table></figure>
+<p>Using chinse in Latex</p>
+<ul>
+<li>CTeX</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>[UTF8]&#123;ctexart&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>[T1]&#123;fontenc&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">你好，这是一个测试文档。</span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<p>when using ctexart documention, recommand add it<code>\usepackage[T1]&#123;fontenc&#125;</code>, in case symbol can’t be displayed correct</p>
+<ul>
+<li>ctex</li>
+</ul>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>&#123;article&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>[UTF8]&#123;ctex&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">你好，这是一个测试文档。</span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://github.com/lervag/vimtex">vimtex</a><br><a href="https://jdhao.github.io/2018/03/29/latex-chinese.zh/">全面总结如何在 LaTeX 中使用中文 (2020 最新版)</a></p>
+]]></content>
   </entry>
 </search>
